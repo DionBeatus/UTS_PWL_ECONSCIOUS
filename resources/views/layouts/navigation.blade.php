@@ -30,7 +30,7 @@
                    class="relative pb-1 transition duration-300
                    {{ request()->routeIs('users.*') ? 'text-green-700' : 'hover:text-green-600' }}">
                     
-                    User
+                    Users
 
                     <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
                         {{ request()->routeIs('users.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
