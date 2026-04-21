@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-green-800 leading-tight">
             {{ __('Manajemen Penjualan') }}
         </h2>
     </x-slot>
@@ -22,16 +22,16 @@
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-bold">Daftar Penjualan</h3>
+                       <h3 class="text-lg text-green-700 font-bold">Daftar Penjualan</h3>
                     <a href="{{ route('sales.create') }}"
-                        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                        Tambah Data Penjualan
+                        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                        + Tambah Data Penjualan
                     </a>
                 </div>
 
                 <div class="overflow-x-auto">
                     <table class="w-full border border-gray-300">
-                        <thead class="bg-gray-100">
+                        <thead class="bg-green-50 text-green-700">
                             <tr>
                                 <th class="border px-4 py-2 text-left">No</th>
                                 <th class="border px-4 py-2 text-left">Nama</th>
@@ -53,20 +53,18 @@
                                 <td class="border px-4 py-2">{{ $sale->quantity }}</td>
                                 <td class="border px-4 py-2">{{ $sale->price }}</td>
                                 <td class="border px-4 py-2">{{ $sale->total }}</td>
-                                <td class="border px-4 py-2">
+                                <td class="border px-4 py-2 flex gap-2">
                                     <a href="{{ route('sales.edit', $sale->id) }}"
-                                        class="px-3 py-1 bg-yellow-500 text-white rounded">
+                                        class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
                                         Edit
                                     </a>
-
                                     <form action="{{ route('sales.destroy', $sale->id) }}"
                                         method="POST"
-                                        class="inline-block"
-                                        onsubmit="return confirm('Yakin hapus data ini?')">
+                                        onsubmit="return confirm('Yakin hapus data pembelian ini?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
-                                            class="px-3 py-1 bg-red-600 text-white rounded">
+                                            class="px-3 py-1 bg-orange-600 text-white rounded hover:bg-red-700">
                                             Hapus
                                         </button>
                                     </form>

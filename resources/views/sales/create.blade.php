@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-green-800 leading-tight">
             {{ __('Tambah Penjualan') }}
         </h2>
     </x-slot>
 
     <div class="py-6">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
+            <div class="bg-blue-100 shadow-sm sm:rounded-lg p-6" style="background: linear-gradient(180deg, white, #CDFFC7)">
                 <form action="{{ route('sales.store') }}" method="POST">
                     @csrf
 
@@ -71,12 +71,12 @@
 
                     <div class="flex gap-2">
                         <button type="submit"
-                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            class="px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700">
                             Simpan
                         </button>
 
                         <a href="{{ route('sales.index') }}"
-                            class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+                            class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-gray-600">
                             Kembali
                         </a>
                     </div>
