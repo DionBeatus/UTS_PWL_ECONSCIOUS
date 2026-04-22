@@ -69,6 +69,7 @@
                     {{ $products->links() }}
                 </div>
             </div>
+            <img src="{{ asset('asset/bg.png') }}" class="h-450 pb-50 w-auto object-contain">
         </div>
     </div>
 </x-app-layout>
