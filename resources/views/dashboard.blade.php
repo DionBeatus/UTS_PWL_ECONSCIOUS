@@ -47,7 +47,6 @@
                     </div>
                 </div>
 
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 mb-6">
                     <div class="bg-purple-200 p-5 rounded-xl shadow hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-in-out">
                         <h3 class="font-semibold mb-3">Stock Rendah</h3>
