@@ -46,8 +46,8 @@
                                 <td class="border px-4 py-2">{{ $sale->customer_email }}</td>
                                 <td class="border px-4 py-2">{{ $sale->product->name }}</td>
                                 <td class="border px-4 py-2">{{ $sale->quantity }}</td>
-                                <td class="border px-4 py-2">{{ $sale->price }}</td>
-                                <td class="border px-4 py-2">{{ $sale->total }}</td>
+                                 <td class="border px-4 py-2">Rp {{ number_format($sale->price,0,',','.') }}</td>
+                                <td class="border px-4 py-2">Rp {{ number_format($sale->total,0,',','.') }}</td>
                                 <td class="border px-4 py-2 flex gap-2">
                                     <a href="{{ route('sales.edit', $sale->id) }}"
                                         class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
