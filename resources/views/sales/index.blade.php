@@ -46,16 +46,12 @@
                                 <td class="border px-4 py-2">{{ $sale->customer_email }}</td>
                                 <td class="border px-4 py-2">{{ $sale->product->name }}</td>
                                 <td class="border px-4 py-2">{{ $sale->quantity }}</td>
-<<<<<<< HEAD
-                                 <td class="border px-4 py-2">Rp {{ number_format($sale->price,0,',','.') }}</td>
-=======
                                 <td class="border px-4 py-2">Rp {{ number_format($sale->price,0,',','.') }}</td>
->>>>>>> dfec69ca3b3f618b2f1071c62ead857aa89200dd
                                 <td class="border px-4 py-2">Rp {{ number_format($sale->total,0,',','.') }}</td>
                                 <td class="border px-4 py-2 flex gap-2">
                                     <a href="{{ route('sales.edit', $sale->id) }}"
                                         class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
-                                        Edit
+                                        Editest
                                     </a>
                                     <form action="{{ route('sales.destroy', $sale->id) }}"
                                         method="POST"
