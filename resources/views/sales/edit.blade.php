@@ -65,7 +65,8 @@
 
                     <div class="mb-4">
                         <label class="block font-medium mb-1">Total</label>
-                        <input type="number" name="total" id="total"
+                        <input type="number" id="total"
+                            value="{{ $sale->total }}"
                             class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
                     </div>
 
