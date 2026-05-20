@@ -27,7 +27,7 @@ class ProductController extends Controller
             'category' => ['required', 'string'],
             'source_type' => ['required', 'in:purchase,handmade'],
             'unit' => ['required', 'string'],
-            'selling_price' => ['required', 'integer'],
+            'selling_price' => ['present', 'numeric', 'min:0'],
         ]);
 
         Product::create([
@@ -63,7 +63,7 @@ class ProductController extends Controller
             'category' => ['required', 'string'],
             'source_type' => ['required', 'in:purchase,handmade'],
             'unit' => ['required', 'string'],
-            'selling_price' => ['required', 'integer'],
+            'selling_price' => ['present', 'numeric', 'min:0'],
         ]);
 
         $product->update([

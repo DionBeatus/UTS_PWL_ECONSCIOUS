@@ -103,7 +103,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="8" class="px-4 py-6 text-center text-gray-500">
+                                <td colspan="7" class="px-4 py-6 text-center text-gray-500">
                                     Tidak ditemukan data stok yang cocok.
                                 </td>
                             </tr>

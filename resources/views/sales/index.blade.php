@@ -49,7 +49,7 @@
                                 </td>
 
                                 <td class="border px-4 py-2">
-                                    {{ ucwords(strtolower($sale->customer_name)) }}
+                                    {{ $sale->customer_name }}
                                 </td>
 
                                 <td class="border px-4 py-2">
@@ -81,7 +81,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="5" class="text-center py-4">
+                                <td colspan="7" class="text-center py-4">
                                     Tidak ada data transaksi penjualan yang ditemukan.
                                 </td>
                             </tr>

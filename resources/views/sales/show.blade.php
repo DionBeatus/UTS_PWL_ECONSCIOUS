@@ -20,7 +20,7 @@
                                     <span class="block text-gray-500 font-medium">Nama Customer:</span>
                                     <span class="text-base font-semibold text-gray-800">
                                         <td class="border px-4 py-2">
-                                            {{ ucwords(strtolower($sale->customer_name)) }}
+                                            {{ $sale->customer_name }}
                                         </td>
                                     </span>
                                 </div>

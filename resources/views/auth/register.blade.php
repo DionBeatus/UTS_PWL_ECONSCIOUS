@@ -2,6 +2,11 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+        <!-- Brand -->
+        <div class="text-center mb-6">
+            <img src="{{ asset('asset/logo.png') }}" alt="Econscious" class="w-24 h-24 mx-auto object-contain drop-shadow-lg">
+        </div>
+
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />

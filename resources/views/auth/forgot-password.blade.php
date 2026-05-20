@@ -1,4 +1,10 @@
 <x-guest-layout>
+
+    <!-- Brand -->
+    <div class="text-center mb-6">
+        <img src="{{ asset('asset/logo.png') }}" alt="Econscious" class="w-24 h-24 mx-auto object-contain drop-shadow-lg">
+    </div>
+
     <div class="mb-4 text-sm text-gray-600">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>

@@ -61,7 +61,7 @@ class StockController extends Controller
             'quantity' => $request->quantity,
         ]);
 
-        return redirect()->route('stocks.index')->with('success', 'Master stok baru berhasil ditambahkan.');
+        return redirect()->route('stocks.index')->with('success', 'Data stok berhasil ditambahkan.');
     }
 
     public function edit(Stock $stock)
@@ -80,7 +80,7 @@ class StockController extends Controller
             'quantity' => $request->quantity,
         ]);
 
-        return redirect()->route('stocks.index')->with('success', 'Jumlah stok berhasil diperbarui.');
+        return redirect()->route('stocks.index')->with('success', 'Data stok berhasil diperbarui.');
     }
 
     public function destroy(Stock $stock)

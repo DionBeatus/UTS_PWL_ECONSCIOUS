@@ -2,6 +2,11 @@
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
+        <!-- Brand -->
+        <div class="text-center mb-6">
+            <img src="{{ asset('asset/logo.png') }}" alt="Econscious" class="w-24 h-24 mx-auto object-contain drop-shadow-lg">
+        </div>
+
         <!-- Password Reset Token -->
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
