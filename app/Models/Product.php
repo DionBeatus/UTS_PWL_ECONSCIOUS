@@ -8,11 +8,19 @@ class Product extends Model
 {
     protected $fillable = [
         'product_name',
+        'user_id',
         'category',
         'source_type',
         'unit',
         'selling_price'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(
+            User::class
+        );
+    }
 
     public function stock()
     {

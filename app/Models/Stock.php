@@ -21,7 +21,7 @@ class Stock extends Model
     {
         return $this->belongsTo(Product::class);
     }
-
+    
     public function getStatusAttribute(): string
     {
         if ($this->quantity <= 0) {

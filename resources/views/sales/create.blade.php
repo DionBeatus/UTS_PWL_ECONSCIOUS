@@ -16,6 +16,30 @@
                     @csrf
 
                     <div class="mb-4">
+                        <label class="block font-medium mb-1 text-gray-700">PIC</label>
+                        <input type="text"
+                            value="{{ Auth::user()->name ?? '-' }}"
+                            class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block font-medium mb-1 text-gray-700">
+                            Tanggal Penjualan
+                        </label>
+
+                        <input type="date"
+                            name="sale_date"
+                            value="{{ old('sale_date', date('Y-m-d')) }}"
+                            class="w-full border rounded px-3 py-2 bg-white focus:ring-green-500 focus:border-green-500">
+
+                        @error('sale_date')
+                        <div class="text-red-600 text-sm mt-1">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-4">
                         <label class="block font-medium mb-1 text-gray-700">Nama Customer</label>
                         <input type="text" name="customer_name" value="{{ old('customer_name') }}"
                             class="w-full border rounded px-3 py-2 bg-white focus:ring-green-500 focus:border-green-500">

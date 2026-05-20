@@ -24,7 +24,9 @@
                         <thead class="bg-green-50 text-green-700">
                             <tr>
                                 <th class="border px-4 py-2 text-left">No</th>
-                                <th class="border px-4 py-2 text-left">Customer</th>
+                                <th class="border px-4 py-2 text-left">Tanggal Penjualan</th>
+                                <th class="border px-4 py-2 text-left">PIC</th>
+                                <th class="border px-4 py-2 text-left">Nama Customer</th>
                                 <th class="border px-4 py-2 text-left">Email</th>
                                 <th class="border px-4 py-2 text-left">Total</th>
                                 <th class="border px-4 py-2 text-left">Aksi</th>
@@ -39,7 +41,15 @@
                                 </td>
 
                                 <td class="border px-4 py-2">
-                                    {{ $sale->customer_name }}
+                                    {{ $sale->sale_date }}
+                                </td>
+
+                                <td class="border px-4 py-2">
+                                    {{ $sale->user->name }}
+                                </td>
+
+                                <td class="border px-4 py-2">
+                                    {{ ucwords(strtolower($sale->customer_name)) }}
                                 </td>
 
                                 <td class="border px-4 py-2">

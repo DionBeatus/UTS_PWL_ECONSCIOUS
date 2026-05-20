@@ -27,14 +27,21 @@
                     @csrf
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1">Nama Produk</label>
+                        <label class="block font-medium mb-1 text-gray-700">PIC</label>
+                        <input type="text"
+                            value="{{ Auth::user()->name ?? '-' }}"
+                            class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block font-medium mb-1 text-gray-700">Nama Produk</label>
                         <input type="text" name="name"
                             value="{{ old('name') }}"
                             class="w-full border rounded px-3 py-2">
                     </div>
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1">Kategori</label>
+                        <label class="block font-medium mb-1 text-gray-700">Kategori</label>
                         <select name="category" class="w-full border rounded px-3 py-2">
                             <option value="pelengkap">Pelengkap</option>
                             <option value="barang jadi">Barang Jadi</option>
@@ -45,7 +52,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1">Sumber</label>
+                        <label class="block font-medium mb-1 text-gray-700">Sumber</label>
                         <select name="source_type" class="w-full border rounded px-3 py-2">
                             <option value="purchase">Purchase</option>
                             <option value="handmade">Handmade</option>
@@ -56,7 +63,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1">Satuan</label>
+                        <label class="block font-medium mb-1 text-gray-700">Satuan</label>
                         <select name="unit" class="w-full border rounded px-3 py-2">
                             <option value="pcs">Pcs</option>
                             <option value="kg">Kg</option>
@@ -68,7 +75,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1">Harga Jual</label>
+                        <label class="block font-medium mb-1 text-gray-700">Harga Jual</label>
                         <input type="number" name="selling_price"
                             value="{{ old('selling_price') }}"
                             class="w-full border rounded px-3 py-2">

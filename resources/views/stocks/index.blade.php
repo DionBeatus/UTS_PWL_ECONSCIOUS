@@ -59,11 +59,11 @@
                         <thead class="bg-green-50 text-green-700">
                             <tr>
                                 <th class="border px-4 py-2 text-left">No</th>
+                                <th class="border px-4 py-2 text-left">PIC</th>
                                 <th class="border px-4 py-2 text-left">Nama Produk</th>
                                 <th class="border px-4 py-2 text-left">Kategori</th>
                                 <th class="border px-4 py-2 text-center">Jumlah Stok</th>
                                 <th class="border px-4 py-2 text-center">Status</th>
-                                <th class="border px-4 py-2 text-left">PIC</th>
                                 <th class="border px-4 py-2 text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -71,7 +71,8 @@
                             @forelse ($stocks as $key => $stock)
                             <tr class="hover:bg-gray-50">
                                 <td class="border px-4 py-2">{{ $stocks->firstItem() + $key }}</td>
-                                <td class="border px-4 py-2 font-medium text-gray-900">{{ $stock->product->product_name ?? '-' }}</td>
+                                <td class="border px-4 py-2">{{ $stock->user->name ?? '-' }}</td>
+                                <td class="border px-4 py-2">{{ $stock->product->product_name ?? '-' }}</td>
                                 <td class="border px-4 py-2">{{ $stock->product->category ?? '-' }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $stock->quantity }}</td>
                                 <td class="border px-4 py-2 text-center">
@@ -83,7 +84,6 @@
                                     <span class="px-2.5 py-1 bg-red-100 text-red-800 text-xs rounded-full font-semibold">Habis</span>
                                     @endif
                                 </td>
-                                <td class="border px-4 py-2 text-gray-600 text-sm-bold">{{ $stock->user->name ?? '-' }}</td>
                                 <td class="border px-4 py-2 text-center">
                                     <div class="flex justify-center gap-2">
                                         <a href="{{ route('stocks.edit', $stock->id) }}"

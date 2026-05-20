@@ -16,7 +16,7 @@
                     @csrf
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1">Nama</label>
+                        <label class="block font-medium mb-1 text-gray-700">Nama</label>
                         <input type="text" name="name" value="{{ old('name') }}"
                             class="w-full border rounded px-3 py-2">
                         @error('name')
@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1">Email</label>
+                        <label class="block font-medium mb-1 text-gray-700">Email</label>
                         <input type="email" name="email" value="{{ old('email') }}"
                             class="w-full border rounded px-3 py-2">
                         @error('email')
@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1">Role</label>
+                        <label class="block font-medium mb-1 text-gray-700">Role</label>
                         <select name="role" class="w-full border rounded px-3 py-2">
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1">Password</label>
+                        <label class="block font-medium mb-1 text-gray-700">Password</label>
                         <input type="password" name="password"
                             class="w-full border rounded px-3 py-2">
                         @error('password')
@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1">Konfirmasi Password</label>
+                        <label class="block font-medium mb-1 text-gray-700">Konfirmasi Password</label>
                         <input type="password" name="password_confirmation"
                             class="w-full border rounded px-3 py-2">
                     </div>

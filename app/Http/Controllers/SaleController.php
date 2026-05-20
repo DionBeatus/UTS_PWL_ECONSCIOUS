@@ -7,6 +7,7 @@ use App\Models\Sale;
 use App\Models\SaleDetail;
 use App\Models\Product;
 use App\Models\Stock;
+use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
 {
@@ -25,6 +26,7 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'sale_date' => ['required', 'date'],
             'customer_name' => ['required'],
             'customer_email' => ['required', 'email'],
             'customer_phone' => ['required'],
@@ -33,6 +35,8 @@ class SaleController extends Controller
         ]);
 
         $sale = Sale::create([
+            'sale_date' => $request->sale_date,
+            'user_id' => Auth::id(),
             'customer_name' => $request->customer_name,
             'customer_email' => $request->customer_email,
             'customer_phone' => $request->customer_phone,
@@ -42,34 +46,39 @@ class SaleController extends Controller
         $total = 0;
 
         foreach ($request->products as $index => $productId) {
+
             $product = Product::find($productId);
+
             $qty = (int) $request->quantities[$index];
             $price = $product->selling_price;
             $subtotal = $qty * $price;
 
             SaleDetail::create([
                 'sale_id' => $sale->id,
+                'user_id' => Auth::id(),
                 'product_id' => $productId,
                 'quantity' => $qty,
                 'price' => $price,
                 'subtotal' => $subtotal
             ]);
-
             $total += $subtotal;
+
             $stock = Stock::where('product_id', $productId)->first();
 
             if ($stock) {
                 $stock->quantity -= $qty;
                 $stock->save();
             }
-
-            $this->updateEcochainMaterials($product->product_name, $qty, 'decrease');
         }
 
-        $sale->update(['total' => $total]);
+        $sale->update([
+            'total' => $total
+        ]);
 
-        return redirect()->route('sales.index')->with('success', 'Data penjualan berhasil ditambahkan.');
+        return redirect()->route('sales.index')
+            ->with('success', 'Data penjualan berhasil ditambahkan.');
     }
+
 
     public function show(int $id)
     {
@@ -122,12 +131,12 @@ class SaleController extends Controller
 
             SaleDetail::create([
                 'sale_id' => $sale->id,
+                'user_id' => Auth::id(),
                 'product_id' => $productId,
                 'quantity' => $qty,
                 'price' => $price,
                 'subtotal' => $subtotal
             ]);
-
             $total += $subtotal;
             $stock = Stock::where('product_id', $productId)->first();
 
