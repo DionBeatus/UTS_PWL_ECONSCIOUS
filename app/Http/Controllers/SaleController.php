@@ -19,7 +19,7 @@ class SaleController extends Controller
 
     public function create()
     {
-        $products = Product::all();
+        $products = Product::where('category', 'finished product')->get();
         return view('sales.create', compact('products'));
     }
 
@@ -139,7 +139,7 @@ class SaleController extends Controller
 
     public function edit(Sale $sale)
     {
-        $products = Product::all();
+        $products = Product::where('category', 'finished product')->get();
         $sale->load('details');
         return view('sales.edit', compact('sale', 'products'));
     }

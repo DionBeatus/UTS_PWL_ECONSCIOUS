@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="text-right">
                                         <p class="text-sm text-gray-600">Total</p>
-                                        <p class="font-bold text-green-700">Rp {{ number_format($purchase->total, 0, ',', '.') }}</p>
+                                        <p class="font-bold text-red-700">Rp {{ number_format($purchase->total, 0, ',', '.') }}</p>
                                     </div>
                                 </div>
 
@@ -122,7 +122,7 @@
                                     </div>
                                     <div class="text-right">
                                         <p class="text-sm text-gray-600">Total</p>
-                                        <p class="font-bold text-red-700">Rp {{ number_format($sale->total, 0, ',', '.') }}</p>
+                                        <p class="font-bold text-green-700">Rp {{ number_format($sale->total, 0, ',', '.') }}</p>
                                     </div>
                                 </div>
 
