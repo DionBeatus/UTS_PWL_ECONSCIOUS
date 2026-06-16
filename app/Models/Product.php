@@ -25,8 +25,13 @@ class Product extends Model
         return $this->hasOne(Stock::class);
     }
 
-    public function details()
+    public function saleDetails()
     {
         return $this->hasMany(SaleDetail::class);
+    }
+
+    public function purchaseDetails()
+    {
+        return $this->hasMany(PurchaseDetail::class);
     }
 }

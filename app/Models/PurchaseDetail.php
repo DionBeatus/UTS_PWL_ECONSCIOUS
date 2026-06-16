@@ -16,15 +16,11 @@ class PurchaseDetail extends Model
     
     public function purchase()
     {
-        return $this->belongsTo(
-            Purchase::class
-        );
+        return $this->belongsTo(Purchase::class);
     }
 
     public function product()
     {
-        return $this->belongsTo(
-            Product::class
-        );
+        return $this->belongsTo(Product::class);
     }
 }
