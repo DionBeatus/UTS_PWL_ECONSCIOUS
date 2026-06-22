@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block font-medium mb-1 text-gray-700">Nama Produk</label>
+                        <label class="block font-medium mb-1 text-gray-700">Name Produk</label>
                         <select name="product_id" class="w-full border rounded px-3 py-2 bg-white focus:ring-green-500 focus:border-green-500" required>
                             <option value=""></option>
                             @foreach($products as $product)
