@@ -34,7 +34,7 @@ class StockController extends Controller
             $stocks->setCollection($filteredItems);
         }
 
-        $categories = Product::select('category')->whereNotNull('category')->distinct()->pluck('category');
+        $categories = Product::select('category')->whereNotNull('category')->where('category', '!=', 'finished product')->distinct()->pluck('category');
 
         return view('stocks.index', compact('stocks', 'categories'));
     }

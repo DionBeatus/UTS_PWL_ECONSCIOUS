@@ -103,7 +103,7 @@
                                     <input type="text" class="w-full border rounded px-3 py-2 bg-gray-50 font-bold text-center row-subtotal" readonly value="Rp {{ number_format($detail->subtotal, 0, ',', '.') }}">
                                 </div>
                                 <div class="pt-5">
-                                    <button type="button" class="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm remove-product-btn">
+                                    <button type="button" class="px-3 py-2 font-semibold bg-red-500 text-white rounded hover:bg-red-600 text-sm remove-product-btn">
                                         Hapus
                                     </button>
                                 </div>
@@ -111,7 +111,7 @@
                             @endforeach
                         </div>
 
-                        <button type="button" id="add-product-btn" class="mt-3 px-3 py-1.5 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition">
+                        <button type="button" id="add-product-btn" class="mt-3 px-3 py-1.5 font-semibold bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition">
                             + Tambah Produk Berbeda
                         </button>
                     </div>
@@ -123,10 +123,10 @@
                     </div>
 
                     <div class="flex gap-2">
-                        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">
+                        <button type="submit" class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700 transition">
                             Update Transaksi
                         </button>
-                        <a href="{{ route('sales.index') }}" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition">
+                        <a href="{{ route('sales.index') }}" class="px-4 py-2 font-semibold bg-orange-500 text-white rounded hover:bg-orange-600 transition">
                             Kembali
                         </a>
                     </div>

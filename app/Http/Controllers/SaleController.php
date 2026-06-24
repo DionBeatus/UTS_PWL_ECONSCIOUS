@@ -8,6 +8,7 @@ use App\Models\SaleDetail;
 use App\Models\Product;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Recipe;
 
 class SaleController extends Controller
 {
@@ -39,43 +40,33 @@ class SaleController extends Controller
             $product = Product::find($productId);
             $qty = (int) $request->quantities[$index];
 
-            $recipes = [
-                'EcoChain V1' => ['Paracord', 'Lonceng', 'Biji Lada', 'Carabiner O', 'EcoCharm', 'Packaging', 'Kantong Starch Singkong'],
-                'EcoChain V2' => ['Paracord', 'Lonceng', 'Biji Lada', 'Carabiner Love', 'EcoCharm', 'Packaging', 'Kantong Starch Singkong'],
-            ];
+            $recipe = Recipe::with('details.product')
+                ->where('product_id', $productId)
+                ->first();
 
-            if (isset($recipes[$product->product_name])) {
+            if (!$recipe) {
+                return back()->withErrors([
+                    'products' => 'Recipe untuk ' . $product->product_name . ' belum dibuat.'
+                ])->withInput();
+            }
 
-                foreach ($recipes[$product->product_name] as $materialName) {
+            foreach ($recipe->details as $detail) {
 
-                    $materialProduct = Product::where('product_name', $materialName)->first();
+                $required_qty = $detail->quantity * $qty;
 
-                    if ($materialProduct) {
-
-                        $materialStock = Stock::where('product_id', $materialProduct->id)->first();
-
-                        if (
-                            !$materialStock ||
-                            $materialStock->quantity <= 0 ||
-                            $qty > $materialStock->quantity
-                        ) {
-                            return back()->withErrors([
-                                'products' => 'Stok bahan ' . $materialName . ' untuk ' . $product->product_name . ' tidak mencukupi.'
-                            ])->withInput();
-                        }
-                    }
-                }
-            } else {
-
-                $stock = Stock::where('product_id', $productId)->first();
+                $stock = Stock::where(
+                    'product_id',
+                    $detail->product_id
+                )->first();
 
                 if (
                     !$stock ||
-                    $stock->quantity <= 0 ||
-                    $qty > $stock->quantity
+                    $stock->quantity < $required_qty
                 ) {
                     return back()->withErrors([
-                        'products' => 'Stok produk ' . $product->product_name . ' tidak mencukupi.'
+                        'products' => 'Stok bahan '
+                            . $detail->product->product_name
+                            . ' tidak mencukupi.'
                     ])->withInput();
                 }
             }
@@ -110,18 +101,7 @@ class SaleController extends Controller
 
             $total += $subtotal;
 
-            if (!in_array($product->product_name, ['EcoChain V1', 'EcoChain V2'])) {
-
-                $stock = Stock::where('product_id', $productId)->first();
-
-                if ($stock) {
-                    $stock->quantity -= $qty;
-                    $stock->user_id = Auth::id();
-                    $stock->save();
-                }
-            }
-
-            $this->updateEcochainMaterials($product->product_name, $qty, 'decrease');
+            $this->updateRecipeMaterials($product->id, $qty, 'decrease');
         }
 
         $sale->update([
@@ -157,17 +137,7 @@ class SaleController extends Controller
 
         foreach ($sale->details as $detail) {
 
-            $stock = Stock::where('product_id', $detail->product_id)->first();
-
-            if (
-                $stock &&
-                !in_array($detail->product->product_name, ['EcoChain V1', 'EcoChain V2'])
-            ) {
-                $stock->quantity += $detail->quantity;
-                $stock->save();
-            }
-
-            $this->updateEcochainMaterials($detail->product->product_name, $detail->quantity, 'increase');
+            $this->updateRecipeMaterials($detail->product_id, $detail->quantity, 'increase');
         }
 
         foreach ($request->products as $index => $productId) {
@@ -175,43 +145,31 @@ class SaleController extends Controller
             $product = Product::find($productId);
             $qty = (int) $request->quantities[$index];
 
-            $recipes = [
-                'EcoChain V1' => ['Paracord', 'Lonceng', 'Biji Lada', 'Carabiner O', 'EcoCharm', 'Packaging', 'Kantong Starch Singkong'],
-                'EcoChain V2' => ['Paracord', 'Lonceng', 'Biji Lada', 'Carabiner Love', 'EcoCharm', 'Packaging', 'Kantong Starch Singkong'],
-            ];
+            $recipe = Recipe::with('details.product')
+                ->where('product_id', $productId)
+                ->first();
 
-            if (isset($recipes[$product->product_name])) {
+            if (!$recipe) {
+                return back()->withErrors([
+                    'products' => 'Recipe untuk ' . $product->product_name . ' belum dibuat.'
+                ])->withInput();
+            }
 
-                foreach ($recipes[$product->product_name] as $materialName) {
+            foreach ($recipe->details as $detail) {
 
-                    $materialProduct = Product::where('product_name', $materialName)->first();
+                $required_qty = $detail->quantity * $qty;
 
-                    if ($materialProduct) {
-
-                        $materialStock = Stock::where('product_id', $materialProduct->id)->first();
-
-                        if (
-                            !$materialStock ||
-                            $materialStock->quantity <= 0 ||
-                            $qty > $materialStock->quantity
-                        ) {
-                            return back()->withErrors([
-                                'products' => 'Stok bahan ' . $materialName . ' untuk ' . $product->product_name . ' tidak mencukupi.'
-                            ])->withInput();
-                        }
-                    }
-                }
-            } else {
-
-                $stock = Stock::where('product_id', $productId)->first();
+                $stock = Stock::where(
+                    'product_id',
+                    $detail->product_id
+                )->first();
 
                 if (
                     !$stock ||
-                    $stock->quantity <= 0 ||
-                    $qty > $stock->quantity
+                    $stock->quantity < $required_qty
                 ) {
                     return back()->withErrors([
-                        'products' => 'Stok produk ' . $product->product_name . ' tidak mencukupi.'
+                        'products' => 'Stok bahan ' . $detail->product->product_name . ' tidak mencukupi.'
                     ])->withInput();
                 }
             }
@@ -248,18 +206,7 @@ class SaleController extends Controller
 
             $total += $subtotal;
 
-            if (!in_array($product->product_name, ['EcoChain V1', 'EcoChain V2'])) {
-
-                $stock = Stock::where('product_id', $productId)->first();
-
-                if ($stock) {
-                    $stock->quantity -= $qty;
-                    $stock->user_id = Auth::id();
-                    $stock->save();
-                }
-            }
-
-            $this->updateEcochainMaterials($product->product_name, $qty, 'decrease');
+            $this->updateRecipeMaterials($product->id, $qty, 'decrease');
         }
 
         $sale->update([
@@ -273,17 +220,7 @@ class SaleController extends Controller
     {
         foreach ($sale->details as $detail) {
 
-            $stock = Stock::where('product_id', $detail->product_id)->first();
-
-            if (
-                $stock &&
-                !in_array($detail->product->product_name, ['EcoChain V1', 'EcoChain V2'])
-            ) {
-                $stock->quantity += $detail->quantity;
-                $stock->save();
-            }
-
-            $this->updateEcochainMaterials($detail->product->product_name, $detail->quantity, 'increase');
+            $this->updateRecipeMaterials($detail->product_id, $detail->quantity, 'increase');
         }
 
         $sale->delete();
@@ -291,36 +228,32 @@ class SaleController extends Controller
         return redirect()->route('sales.index')->with('success', 'Data penjualan berhasil dihapus.');
     }
 
-    private function updateEcochainMaterials(string $productName, int $qty, string $type = 'decrease'): void
+    private function updateRecipeMaterials(int $product_id, int $sale_qty, string $type = 'decrease'): void
     {
-        $recipes = [
-            'EcoChain V1' => ['Paracord', 'Lonceng', 'Biji Lada', 'Carabiner O', 'EcoCharm', 'Packaging', 'Kantong Starch Singkong'],
-            'EcoChain V2' => ['Paracord', 'Lonceng', 'Biji Lada', 'Carabiner Love', 'EcoCharm', 'Packaging', 'Kantong Starch Singkong'],
-        ];
+        $recipe = Recipe::with('details')->where('product_id', $product_id)->first();
 
-        if (!isset($recipes[$productName])) {
+        if (!$recipe) {
             return;
         }
 
-        foreach ($recipes[$productName] as $materialName) {
+        foreach ($recipe->details as $detail) {
 
-            $materialProduct = Product::where('product_name', $materialName)->first();
+            $stock = Stock::where('product_id', $detail->product_id)->first();
 
-            if ($materialProduct) {
-
-                $materialStock = Stock::where('product_id', $materialProduct->id)->first();
-
-                if ($materialStock) {
-
-                    if ($type == 'decrease') {
-                        $materialStock->quantity -= $qty;
-                    } else {
-                        $materialStock->quantity += $qty;
-                    }
-
-                    $materialStock->save();
-                }
+            if (!$stock) {
+                continue;
             }
+
+            $usedQty = $detail->quantity * $sale_qty;
+
+            if ($type == 'decrease') {
+                $stock->quantity -= $usedQty;
+            } else {
+                $stock->quantity += $usedQty;
+            }
+
+            $stock->user_id = Auth::id();
+            $stock->save();
         }
     }
 }

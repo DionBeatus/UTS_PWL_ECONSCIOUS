@@ -70,10 +70,10 @@
                         <input type="hidden" id="selling_price_value" name="selling_price" value="{{ old('selling_price', $product->selling_price ?? 0) }}">
                     </div>
                     <div class="flex gap-2">
-                        <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700">
+                        <button type="submit" class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700">
                             Update
                         </button>
-                        <a href="{{ route('products.index') }}" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-gray-600">
+                        <a href="{{ route('products.index') }}" class="px-4 py-2 font-semibold bg-orange-500 text-white rounded hover:bg-orange-600">
                             Kembali
                         </a>
                     </div>

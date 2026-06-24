@@ -1,4 +1,4 @@
-        <x-app-layout>
+<x-app-layout>
             <x-slot name="header">
                 <div class="max-w-7xl mx-auto">
                     <div class="bg-white/70 backdrop-blur-md rounded-xl px-6 py-4 shadow flex justify-between items-center">
@@ -91,12 +91,12 @@
 
                         <div class="flex gap-2">
                             <a href="{{ route('sales.edit', $sale->id) }}"
-                                class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition font-medium">
+                                class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700 transition font-medium">
                                 Edit Transaksi
                             </a>
 
                             <a href="{{ route('sales.index') }}"
-                                class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition font-medium">
+                                class="px-4 py-2 font-semibold bg-orange-500 text-white rounded hover:bg-orange-600 transition font-medium">
                                 Kembali
                             </a>
                         </div>
@@ -104,4 +104,4 @@
                     </div>
                 </div>
             </div>
-        </x-app-layout>
+</x-app-layout>

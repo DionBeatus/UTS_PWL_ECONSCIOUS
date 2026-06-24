@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Stock::class);
     }
+
+    public function recipes()
+    {
+        return $this->hasMany(Recipe::class);
+    }
 }

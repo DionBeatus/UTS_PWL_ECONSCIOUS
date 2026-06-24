@@ -8,6 +8,7 @@ use App\Http\Controllers\PurchaseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\RecipeController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -23,6 +24,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('purchases', PurchaseController::class);
     Route::resource('stocks', StockController::class);
+    Route::resource('recipes', RecipeController::class);
 });
 
 Route::middleware('auth')->group(function () {
