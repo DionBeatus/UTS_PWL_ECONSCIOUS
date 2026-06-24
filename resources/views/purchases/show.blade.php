@@ -32,7 +32,7 @@
                             </span>
                         </div>
                         <div class="mt-1">
-                            <span class="block text-gray-500 font-medium">PIC:</span>
+                            <span class="block text-gray-500 font-medium">Perubahan Oleh:</span>
                             <span class="text-base font-semibold text-gray-800">{{ $purchase->user->name ?? 'Admin' }}</span>
                         </div>
                     </div>

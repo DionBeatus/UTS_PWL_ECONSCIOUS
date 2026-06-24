@@ -116,6 +116,7 @@ class SaleController extends Controller
 
                 if ($stock) {
                     $stock->quantity -= $qty;
+                    $stock->user_id = Auth::id();
                     $stock->save();
                 }
             }
@@ -219,6 +220,7 @@ class SaleController extends Controller
         $sale->details()->delete();
 
         $sale->update([
+            'user_id' => Auth::id(),
             'sale_date' => $request->sale_date,
             'customer_name' => $request->customer_name,
             'customer_email' => $request->customer_email,
@@ -252,6 +254,7 @@ class SaleController extends Controller
 
                 if ($stock) {
                     $stock->quantity -= $qty;
+                    $stock->user_id = Auth::id();
                     $stock->save();
                 }
             }

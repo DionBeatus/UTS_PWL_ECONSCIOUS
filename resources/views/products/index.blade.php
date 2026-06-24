@@ -24,7 +24,7 @@
                         <thead class="bg-green-50 text-green-700">
                             <tr>
                                 <th class="border px-4 py-2 text-left">No</th>
-                                <th class="border px-4 py-2 text-left">PIC</th>
+                                <th class="border px-4 py-2 text-left">Perubahan Oleh</th>
                                 <th class="border px-4 py-2 text-left">Nama Produk</th>
                                 <th class="border px-4 py-2 text-left">Kategori</th>
                                 <th class="border px-4 py-2 text-left">Sumber</th>

@@ -25,7 +25,7 @@
                             <tr>
                                 <th class="border px-4 py-2 text-left">No</th>
                                 <th class="border px-4 py-2 text-left">Tanggal Penjualan</th>
-                                <th class="border px-4 py-2 text-left">PIC</th>
+                                <th class="border px-4 py-2 text-left">Perubahan Oleh</th>
                                 <th class="border px-4 py-2 text-left">Nama Customer</th>
                                 <th class="border px-4 py-2 text-left">Email</th>
                                 <th class="border px-4 py-2 text-left">Total</th>

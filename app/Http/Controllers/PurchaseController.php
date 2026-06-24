@@ -68,6 +68,7 @@ class PurchaseController extends Controller
             );
 
             $stock->quantity += $qty;
+            $stock->user_id = Auth::id();
             $stock->save();
         }
 
@@ -107,6 +108,7 @@ class PurchaseController extends Controller
             $stock = Stock::where('product_id', $detail->product_id)->first();
             if ($stock) {
                 $stock->quantity -= $detail->quantity;
+                $stock->user_id = Auth::id();
                 $stock->save();
             }
         }
@@ -114,6 +116,7 @@ class PurchaseController extends Controller
         $purchase->details()->delete();
 
         $purchase->update([
+            'user_id' => Auth::id(),
             'purchase_date' => $request->purchase_date,
             'store_name' => $request->store_name,
             'user_id' => Auth::id(),
@@ -147,6 +150,7 @@ class PurchaseController extends Controller
             );
 
             $stock->quantity += $qty;
+            $stock->user_id = Auth::id();
             $stock->save();
         }
 
@@ -163,6 +167,7 @@ class PurchaseController extends Controller
             $stock = Stock::where('product_id', $detail->product_id)->first();
             if ($stock) {
                 $stock->quantity -= $detail->quantity;
+                $stock->user_id = Auth::id();
                 $stock->save();
             }
         }

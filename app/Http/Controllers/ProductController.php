@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('stock', 'user')->where('user_id', Auth::id())->orderBy('id', 'desc')->paginate(10);
+        $products = Product::with('stock', 'user')->orderBy('id', 'desc')->paginate(10);
 
         return view('products.index', compact('products'));
     }
@@ -68,6 +68,7 @@ class ProductController extends Controller
         ]);
 
         $product->update([
+            'user_id' => Auth::id(),
             'product_name' => $validated['product_name'],
             'category' => $validated['category'],
             'source_type' => $validated['source_type'],

@@ -24,7 +24,7 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-4">
-                        <label class="block font-medium mb-1 text-gray-700">PIC</label>
+                        <label class="block font-medium mb-1 text-gray-700">Perubahan Oleh</label>
                         <input type="text" value="{{ Auth::user()->name ?? '-' }}" class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
                     </div>
                     <div class="mb-4">
