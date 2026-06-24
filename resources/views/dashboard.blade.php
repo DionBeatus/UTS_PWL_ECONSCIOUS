@@ -88,12 +88,12 @@
                                             </p>
                                         </div>
                                     </div>
+                                    @endforeach
                                     @if($purchase->shipping_cost > 0)
                                         <p class="text-xs text-gray-700 mt-1 font-medium">
                                         Ongkir: Rp {{ number_format($purchase->shipping_cost, 0, ',', '.') }}
                                         </p>
-                                        @endif
-                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                             @empty
