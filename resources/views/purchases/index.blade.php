@@ -52,10 +52,8 @@
                                         <form action="{{ route('purchases.destroy', $purchase->id) }}"
                                             method="POST"
                                             onsubmit="return confirm('Yakin hapus transaksi ini?')">
-
                                             @csrf
                                             @method('DELETE')
-
                                             <button type="submit"
                                                 class="px-3 py-1 font-semibold bg-orange-600 text-white rounded hover:bg-red-700">
                                                 Hapus
