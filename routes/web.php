@@ -23,7 +23,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('sales', SaleController::class);
     Route::resource('products', ProductController::class);
     Route::resource('purchases', PurchaseController::class);
-    Route::resource('stocks', StockController::class);
+    Route::resource('stocks', StockController::class)->except(['create', 'store']);
     Route::resource('recipes', RecipeController::class);
 });
 

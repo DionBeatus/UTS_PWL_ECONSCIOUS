@@ -18,8 +18,8 @@ class DashboardController extends Controller
         $totalProduct = Product::count();
         $totalRevenue = Sale::sum('total');
 
-        $recentPurchases = Purchase::with('details.product')->latest()->take(5)->get();
-        $recentSales = Sale::with('details.product')->latest()->take(5)->get();
+        $recentPurchases = Purchase::with('details.product')->orderBy('purchase_date', 'desc')->take(5)->get();
+        $recentSales = Sale::with('details.product')->orderBy('sale_date', 'desc')->take(5)->get();
 
         $purchasesChart = Purchase::select(
             DB::raw('DATE(purchase_date) as date'),

@@ -43,22 +43,25 @@
                                 <td class="border px-4 py-2">{{ $purchase->user->name ?? '-'}}</td>
                                 <td class="border px-4 py-2">Rp {{ number_format($purchase->total, 0, ',', '.') }}</td>
 
-                                <td class="border px-4 py-2 flex justify-center gap-2">
-                                    <a href="{{ route('purchases.show', $purchase->id) }}"
-                                        class="px-3 font-semibold py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                        Detail
-                                    </a>
+                                <td class="border px-4 py-2 text-center">
+                                    <div class="flex justify-center gap-2">
+                                        <a href="{{ route('purchases.show', $purchase->id) }}"
+                                            class="px-3 py-1 font-semibold bg-blue-500 text-white rounded hover:bg-blue-600">
+                                            Detail
+                                        </a>
+                                        <form action="{{ route('purchases.destroy', $purchase->id) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('Yakin hapus transaksi ini?')">
 
-                                    <form action="{{ route('purchases.destroy', $purchase->id) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Yakin hapus data pembelian ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                            class="px-3 font-semibold py-1 bg-orange-600 text-white rounded hover:bg-red-700">
-                                            Hapus
-                                        </button>
-                                    </form>
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit"
+                                                class="px-3 py-1 font-semibold bg-orange-600 text-white rounded hover:bg-red-700">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                             @empty

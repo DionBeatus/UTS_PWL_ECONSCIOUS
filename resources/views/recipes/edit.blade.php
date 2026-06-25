@@ -35,7 +35,7 @@
                             <label class="block font-medium mb-1 text-gray-700">
                                 Perubahan Oleh
                             </label>
-                            <input type="text" value="{{ $recipe->user->name ?? '-' }}" class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
+                            <input type="text" value="{{ Auth::user()->name }}" class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
                         </div>
                     </div>
 
@@ -48,6 +48,7 @@
                             @foreach($recipe->details as $detail)
                             <div class="flex gap-2 items-center bg-white p-3 rounded-lg border border-green-100 material-row">
                                 <div class="flex-1">
+                                    <label class="block text-xs font-medium text-gray-500 mb-1">Pilih Bahan</label>
                                     <select name="products[]"
                                         class="w-full border rounded px-3 py-2">
                                         @foreach($materials as $material)

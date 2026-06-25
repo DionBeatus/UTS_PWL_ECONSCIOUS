@@ -39,37 +39,6 @@ class StockController extends Controller
         return view('stocks.index', compact('stocks', 'categories'));
     }
 
-    public function create()
-    {
-        $existingProductIds = Stock::pluck('product_id')->toArray();
-        $products = Product::whereNotIn('id', $existingProductIds)->where('category', 'complement')->get();
-        return view('stocks.create', compact('products'));
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'product_id' => 'required|exists:products,id|unique:stocks,product_id',
-            'quantity' => 'required|integer|min:0',
-        ], [
-            'product_id.unique' => 'Stok untuk produk ini sudah terdaftar, silakan gunakan menu edit.'
-        ]);
-
-        $product = Product::findOrFail($request->product_id);
-
-        if (strtolower(trim($product->category)) != 'complement') {
-            return back()->withErrors(['product_id' => 'Produk selain complement tidak dapat dimasukkan ke stok.'])->withInput();
-        }
-
-        Stock::create([
-            'user_id' => Auth::id(),
-            'product_id' => $request->product_id,
-            'quantity' => $request->quantity,
-        ]);
-
-        return redirect()->route('stocks.index')->with('success', 'Data stok berhasil ditambahkan.');
-    }
-
     public function edit(Stock $stock)
     {
         return view('stocks.edit', compact('stock'));

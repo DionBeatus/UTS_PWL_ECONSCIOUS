@@ -54,67 +54,80 @@
 
                         <div>
                             <span class="block text-gray-500 font-medium">
-                                Tanggal Dibuat:
+                                Tanggal Pembuatan Resep:
                             </span>
 
                             <span class="text-base font-semibold text-gray-800">
                                 {{ $recipe->created_at->format('d M Y') }}
                             </span>
                         </div>
-
                     </div>
-
                 </div>
 
-                <div class="overflow-hidden border border-green-200 rounded-xl shadow-sm bg-white">
+                <div class="mb-6">
+                    <h3 class="text-sm font-bold text-gray-800 uppercase tracking-wider mb-2 text-center">
+                        Daftar Bahan Resep
+                    </h3>
 
-                    <table class="w-full text-sm border-collapse">
+                    <div class="overflow-hidden border border-green-200 rounded-xl shadow-sm bg-white">
+                        <table class="w-full text-sm border-collapse">
 
-                        <thead class="bg-green-50 text-green-800">
-                            <tr>
-                                <th class="px-4 py-3 text-left">
-                                    Nama Bahan
-                                </th>
+                            <thead class="bg-green-50 text-green-800 border-b border-green-100 font-bold">
+                                <tr>
+                                    <th class="px-4 py-3 text-left">
+                                        Nama Bahan
+                                    </th>
 
-                                <th class="px-4 py-3 text-center">
-                                    Quantity
-                                </th>
-                            </tr>
-                        </thead>
+                                    <th class="px-4 py-3 text-center">
+                                        Quantity
+                                    </th>
 
-                        <tbody>
+                                    <th class="px-4 py-3 text-center">
+                                        Satuan
+                                    </th>
+                                </tr>
+                            </thead>
 
-                            @foreach($recipe->details as $detail)
+                            <tbody class="divide-y divide-green-100 text-gray-700">
 
-                            <tr>
-                                <td class="px-4 py-3 font-semibold text-green-700">
-                                    {{ $detail->product->product_name }}
-                                </td>
+                                @foreach($recipe->details as $detail)
 
-                                <td class="px-4 py-3 text-center">
-                                    {{ $detail->quantity }}
-                                </td>
-                            </tr>
+                                <tr class="hover:bg-green-50/20 transition">
 
-                            @endforeach
+                                    <td class="px-4 py-3 font-semibold text-green-700">
+                                        {{ $detail->product->product_name }}
+                                    </td>
 
-                        </tbody>
+                                    <td class="px-4 py-3 text-center font-medium">
+                                        {{ $detail->quantity }}
+                                    </td>
 
-                    </table>
+                                    <td class="px-4 py-3 text-center">
+                                        {{ $detail->product->unit }}
+                                    </td>
 
+                                </tr>
+
+                                @endforeach
+
+                            </tbody>
+
+                        </table>
+                    </div>
                 </div>
 
-                <div class="flex gap-2 mt-4">
+                <div class="flex gap-2">
 
                     <a href="{{ route('recipes.edit', $recipe->id) }}"
-                        class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700">
+                        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition font-medium">
                         Edit Resep
                     </a>
 
                     <a href="{{ route('recipes.index') }}"
-                        class="px-4 py-2 font-semibold bg-orange-500 text-white rounded hover:bg-orange-600">
+                        class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 transition font-medium">
                         Kembali
                     </a>
+
                 </div>
             </div>
         </div>

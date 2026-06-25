@@ -10,17 +10,9 @@
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
 
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-lg text-green-700 font-bold">Daftar Stok Produk</h3>
-                    <a href="{{ route('stocks.create') }}"
-                        class="px-4 py-2 font-semibold bg-green-600 text-white rounded hover:bg-green-700 transition">
-                        + Tambah Data Stok Awal
-                    </a>
-                </div>
-
                 <form action="{{ route('stocks.index') }}" method="GET" class="mb-6 grid grid-cols-1 md:grid-cols-4 gap-3 bg-green-50 p-4 rounded-xl border border-green-200">
                     <div>
-                        <label class="block text-sm font-medium text-green-800 mb-1">Pencarian</label>
+                        <label class="block text-sm font-medium text-green-800 mb-1">Nama Produk</label>
                         <input type="text" name="search" value="{{ request('search') }}"
                             class="w-full border-gray-300 rounded px-3 py-1.5 text-sm bg-white focus:ring-green-500 focus:border-green-500">
                     </div>

@@ -38,9 +38,7 @@
                         </div>
                         <div>
                             <label class="block font-medium mb-1 text-gray-700">Perubahan Oleh</label>
-                            <input type="text"
-                                value="{{ $purchase->user->name ?? '-' }}"
-                                class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
+                            <input type="text" value="{{ Auth::user()->name }}" class="w-full border rounded px-3 py-2 bg-gray-100" readonly>
                         </div>
                     </div>
 

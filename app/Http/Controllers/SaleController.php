@@ -64,10 +64,7 @@ class SaleController extends Controller
                     $stock->quantity < $required_qty
                 ) {
                     return back()->withErrors([
-                        'products' => 'Stok bahan '
-                            . $detail->product->product_name
-                            . ' tidak mencukupi.'
-                    ])->withInput();
+                        'products' => 'Stok bahan ' . $detail->product->product_name . ' tidak mencukupi.'])->withInput();
                 }
             }
         }

@@ -60,23 +60,25 @@
                                     Rp {{ number_format($sale->total,0,',','.') }}
                                 </td>
 
-                                <td class="border px-4 py-2 flex justify-center gap-2">
-                                    <a href="{{ route('sales.show', $sale->id) }}"
-                                        class="px-3 font-semibold py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                        Detail
-                                    </a>
+                                <td class="border px-4 py-2 text-center">
+                                    <div class="flex justify-center gap-2">
+                                        <a href="{{ route('sales.show', $sale->id) }}"
+                                            class="px-3 py-1 font-semibold bg-blue-500 text-white rounded hover:bg-blue-600">
+                                            Detail
+                                        </a>
+                                        <form action="{{ route('sales.destroy', $sale->id) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('Yakin hapus transaksi ini?')">
 
-                                    <form action="{{ route('sales.destroy', $sale->id) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Hapus data ini?')">
-                                        @csrf
-                                        @method('DELETE')
+                                            @csrf
+                                            @method('DELETE')
 
-                                        <button class="px-3 py-1 font-semibold bg-orange-600 text-white rounded hover:bg-red-700">
-                                            Hapus
-                                        </button>
-                                    </form>
-
+                                            <button type="submit"
+                                                class="px-3 py-1 font-semibold bg-orange-600 text-white rounded hover:bg-red-700">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                             @empty
