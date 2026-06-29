@@ -23,10 +23,7 @@
                             <select name="product_id"
                                 class="w-full border rounded px-3 py-2 bg-white">
                                 @foreach($products as $product)
-                                <option value="{{ $product->id }}"
-                                    {{ $recipe->product_id == $product->id ? 'selected' : '' }}>
-                                    {{ $product->product_name }}
-                                </option>
+                                <option value="{{ $product->id }}" {{ $recipe->product_id == $product->id ? 'selected' : '' }}> {{ $product->product_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -46,31 +43,38 @@
 
                         <div id="material-container" class="space-y-3">
                             @foreach($recipe->details as $detail)
-                            <div class="flex gap-2 items-center bg-white p-3 rounded-lg border border-green-100 material-row">
+                            <div class="flex flex-wrap md:flex-nowrap gap-2 items-center bg-white p-3 rounded-lg border border-green-100 material-row">
                                 <div class="flex-1">
-                                    <label class="block text-xs font-medium text-gray-500 mb-1">Pilih Bahan</label>
-                                    <select name="products[]"
-                                        class="w-full border rounded px-3 py-2">
+                                    <label class="block text-xs font-medium text-gray-500 mb-1">
+                                        Pilih Bahan
+                                    </label>
+
+                                    <select name="products[]" class="w-full border rounded px-3 py-2 bg-white">
                                         @foreach($materials as $material)
-                                        <option value="{{ $material->id }}"{{ $detail->product_id == $material->id ? 'selected' : '' }}>{{ $material->product_name }}</option>
+                                        <option value="{{ $material->id }}" {{ $detail->product_id == $material->id ? 'selected' : '' }}>{{ $material->product_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
-                                <div class="w-32">
-                                    <input type="number" name="quantities[]" min="1" value="{{ $detail->quantity }}" class="w-full border rounded px-3 py-2 text-center">
+                                <div class="w-36">
+                                    <label class="block text-xs font-medium text-gray-500 mb-1 text-center">
+                                        Quantity
+                                    </label>
+
+                                    <input type="number" name="quantities[]" min="1" value="{{ $detail->quantity }}" class="w-full border rounded px-3 py-2 text-center bg-white">
                                 </div>
 
-                                <button type="button"
-                                    class="px-3 py-2 font-semibold bg-red-500 text-white rounded remove-material-btn">
-                                    Hapus
-                                </button>
+                                <div class="pt-5">
+                                    <button type="button" class="px-3 py-2 bg-red-500 font-semibold text-white rounded hover:bg-red-600 text-sm remove-material-btn">
+                                        Hapus
+                                    </button>
+                                </div>
                             </div>
                             @endforeach
                         </div>
 
-                        <button type="button" id="add-material-btn" class="mt-3 px-3 py-2 font-semibold bg-blue-600 text-white rounded hover:bg-blue-700">
-                            + Tambah Bahan
+                        <button type="button" id="add-material-btn" class="mt-3 px-3 py-1.5 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition">
+                            + Tambah Bahan Penyusun
                         </button>
                     </div>
 

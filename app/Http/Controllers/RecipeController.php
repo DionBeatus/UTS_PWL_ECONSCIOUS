@@ -12,19 +12,20 @@ class RecipeController extends Controller
 {
     public function index()
     {
-        $recipes = Recipe::with(['user','product','details'])->latest()->paginate(10);
+        $recipes = Recipe::with(['user', 'product', 'details'])->latest()->paginate(10);
 
         return view('recipes.index', compact('recipes'));
     }
 
     public function create()
     {
-        $products = Product::where('category','finished product')->get();
+        $existingRecipeProductIds = Recipe::pluck('product_id')->toArray();
 
-        $materials = Product::where('category', 'complement')->get();
+        $products = Product::where('category', 'finished product')->whereNotIn('id', $existingRecipeProductIds)->get();
 
-        return view(
-            'recipes.create',compact('products', 'materials'));
+        $materials = Product::where('category', '!=', 'finished product')->get();
+
+        return view('recipes.create', compact('products', 'materials'));
     }
 
     public function store(Request $request)
@@ -63,13 +64,11 @@ class RecipeController extends Controller
             'finished product'
         )->get();
 
-        $materials = Product::where(
-            'category',
-            '!=',
-            'finished product'
-        )->get();
+        $materials = Product::where('category', '!=', 'finished product')->get();
 
-        return view('recipes.edit',compact(
+        return view(
+            'recipes.edit',
+            compact(
                 'recipe',
                 'products',
                 'materials'
@@ -105,8 +104,8 @@ class RecipeController extends Controller
     }
 
     public function show(Recipe $recipe)
-{
-    $recipe->load(['user', 'product', 'details.product']);
+    {
+        $recipe->load(['user', 'product', 'details.product']);
 
         return view('recipes.show', compact('recipe'));
     }

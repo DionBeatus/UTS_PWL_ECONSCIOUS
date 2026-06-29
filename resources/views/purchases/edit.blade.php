@@ -77,7 +77,7 @@
                                 </div>
 
                                 <div class="pt-5">
-                                    <button type="button" class="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm remove-product-btn">
+                                    <button type="button" class="px-3 py-2 bg-red-500 font-semibold text-white rounded hover:bg-red-600 text-sm remove-product-btn">
                                         Hapus
                                     </button>
                                 </div>

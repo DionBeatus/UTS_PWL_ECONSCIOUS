@@ -54,17 +54,13 @@ class SaleController extends Controller
 
                 $required_qty = $detail->quantity * $qty;
 
-                $stock = Stock::where(
-                    'product_id',
-                    $detail->product_id
-                )->first();
+                $stock = Stock::where('product_id', $detail->product_id)->first(); 
 
                 if (
                     !$stock ||
                     $stock->quantity < $required_qty
                 ) {
-                    return back()->withErrors([
-                        'products' => 'Stok bahan ' . $detail->product->product_name . ' tidak mencukupi.'])->withInput();
+                    return back()->withErrors(['products' => 'Stok bahan ' . $detail->product->product_name . ' tidak mencukupi.'])->withInput();
                 }
             }
         }
@@ -142,31 +138,23 @@ class SaleController extends Controller
             $product = Product::find($productId);
             $qty = (int) $request->quantities[$index];
 
-            $recipe = Recipe::with('details.product')
-                ->where('product_id', $productId)
-                ->first();
+            $recipe = Recipe::with('details.product')->where('product_id', $productId)->first();
 
             if (!$recipe) {
-                return back()->withErrors([
-                    'products' => 'Recipe untuk ' . $product->product_name . ' belum dibuat.'
-                ])->withInput();
+                return back()->withErrors(['products' => 'Recipe untuk ' . $product->product_name . ' belum dibuat.'])->withInput();
             }
 
             foreach ($recipe->details as $detail) {
 
                 $required_qty = $detail->quantity * $qty;
 
-                $stock = Stock::where(
-                    'product_id',
-                    $detail->product_id
-                )->first();
+                $stock = Stock::where('product_id',$detail->product_id)->first();
 
                 if (
                     !$stock ||
                     $stock->quantity < $required_qty
                 ) {
-                    return back()->withErrors([
-                        'products' => 'Stok bahan ' . $detail->product->product_name . ' tidak mencukupi.'
+                    return back()->withErrors(['products' => 'Stok bahan ' . $detail->product->product_name . ' tidak mencukupi.'
                     ])->withInput();
                 }
             }
