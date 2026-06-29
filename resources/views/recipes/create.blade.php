@@ -65,7 +65,7 @@
                                 </div>
 
                                 <div class="pt-5">
-                                    <button type="button" class="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-sm remove-material-btn">
+                                    <button type="button" class="px-3 py-2 bg-red-500 font-semibold text-white rounded hover:bg-red-600 text-sm remove-material-btn">
                                         Hapus
                                     </button>
                                 </div>
@@ -75,7 +75,6 @@
                         <button type="button" id="add-material-btn" class="mt-3 px-3 py-1.5 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition">
                             + Tambah Bahan Penyusun
                         </button>
-
                     </div>
 
                     <div class="flex gap-2">
