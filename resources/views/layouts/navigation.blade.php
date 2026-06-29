@@ -44,6 +44,16 @@
                     </span>
                 </a>
 
+                <!-- RECIPE -->
+                <a href="{{ route('recipes.index') }}"
+                    class="relative pb-1 transition duration-300
+                   {{ request()->routeIs('recipes.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+                    Recipes
+                    <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
+                        {{ request()->routeIs('recipes.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                    </span>
+                </a>
+
                 <!-- SALES -->
                 <a href="{{ route('sales.index') }}"
                     class="relative pb-1 transition duration-300
@@ -71,16 +81,6 @@
                     Stocks
                     <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
                         {{ request()->routeIs('stocks.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
-                    </span>
-                </a>
-
-                <!-- RECIPE -->
-                <a href="{{ route('recipes.index') }}"
-                    class="relative pb-1 transition duration-300
-                   {{ request()->routeIs('recipes.*') ? 'text-green-700' : 'hover:text-green-600' }}">
-                    Recipes
-                    <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
-                        {{ request()->routeIs('recipes.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
                     </span>
                 </a>
             </div>
