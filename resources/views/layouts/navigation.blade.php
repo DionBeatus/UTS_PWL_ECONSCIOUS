@@ -43,13 +43,13 @@
                         </span>
                     </a>
 
-                    <!-- RECIPE -->
-                    <a href="{{ route('recipes.index') }}"
+                    <!-- DONATIONS -->
+                    <a href="{{ route('donations.index') }}"
                         class="relative px-1 py-2 rounded-lg transition duration-300
-                   {{ request()->routeIs('recipes.*') ? 'text-green-700' : 'hover:text-green-600' }}">
-                        Recipes
+                   {{ request()->routeIs('donations.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+                        Donations
                         <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
-                        {{ request()->routeIs('recipes.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                        {{ request()->routeIs('donations.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
                         </span>
                     </a>
 
@@ -63,13 +63,13 @@
                         </span>
                     </a>
 
-                    <!-- DONATIONS -->
-                    <a href="{{ route('donations.index') }}"
+                    <!-- RECIPE -->
+                    <a href="{{ route('recipes.index') }}"
                         class="relative px-1 py-2 rounded-lg transition duration-300
-                   {{ request()->routeIs('donations.*') ? 'text-green-700' : 'hover:text-green-600' }}">
-                        Donations
+                   {{ request()->routeIs('recipes.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+                        Recipes
                         <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
-                        {{ request()->routeIs('donations.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                        {{ request()->routeIs('recipes.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
                         </span>
                     </a>
 
