@@ -73,16 +73,6 @@
                         </span>
                     </a>
 
-                    <!-- SALES -->
-                    <a href="{{ route('sales.index') }}"
-                        class="relative px-1 py-2 rounded-lg transition duration-300
-                   {{ request()->routeIs('sales.*') ? 'text-green-700' : 'hover:text-green-600' }}">
-                        Sales
-                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
-                        {{ request()->routeIs('sales.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
-                        </span>
-                    </a>
-
                     <!-- PURCHASE -->
                     <a href="{{ route('purchases.index') }}"
                         class="relative px-1 py-2 rounded-lg transition duration-300
@@ -90,6 +80,16 @@
                         Purchases
                         <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
                         {{ request()->routeIs('purchases.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
+                        </span>
+                    </a>
+
+                    <!-- SALES -->
+                    <a href="{{ route('sales.index') }}"
+                        class="relative px-1 py-2 rounded-lg transition duration-300
+                   {{ request()->routeIs('sales.*') ? 'text-green-700' : 'hover:text-green-600' }}">
+                        Sales
+                        <span class="absolute left-0 -bottom-1 h-1 bg-green-600 rounded-full transition-all duration-300
+                        {{ request()->routeIs('sales.*') ? 'w-full' : 'w-0 group-hover:w-full' }}">
                         </span>
                     </a>
 
