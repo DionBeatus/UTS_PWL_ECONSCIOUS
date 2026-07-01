@@ -82,18 +82,6 @@ class ProductionController extends Controller
 
         $finishedStock = Stock::where('product_id', $request->product_id)->first();
 
-        if ($finishedStock) {
-            $finishedStock->quantity += $request->quantity;
-            $finishedStock->user_id = Auth::id();
-            $finishedStock->save();
-        } else {
-            Stock::create([
-                'user_id' => Auth::id(),
-                'product_id' => $request->product_id,
-                'quantity' => $request->quantity,
-            ]);
-        }
-
         return redirect()->route('productions.index')->with('success', 'Data produksi berhasil ditambahkan.');
     }
     public function show(Production $production)
@@ -127,14 +115,6 @@ class ProductionController extends Controller
                 $stock->user_id = Auth::id();
                 $stock->save();
             }
-        }
-
-        $finishedStock = Stock::where('product_id', $production->product_id)->first();
-
-        if ($finishedStock) {
-            $finishedStock->quantity -= $production->quantity;
-            $finishedStock->user_id = Auth::id();
-            $finishedStock->save();
         }
 
         $recipe = Recipe::with('details.product')->where('product_id', $request->product_id)->first();
@@ -185,20 +165,6 @@ class ProductionController extends Controller
             $stock->save();
         }
 
-        $finishedStock = Stock::where('product_id', $request->product_id)->first();
-
-        if ($finishedStock) {
-            $finishedStock->quantity += $request->quantity;
-            $finishedStock->user_id = Auth::id();
-            $finishedStock->save();
-        } else {
-            Stock::create([
-                'user_id' => Auth::id(),
-                'product_id' => $request->product_id,
-                'quantity' => $request->quantity,
-            ]);
-        }
-
         return redirect()->route('productions.index')->with('success', 'Data produksi berhasil diupdate.');
     }
 
@@ -213,14 +179,6 @@ class ProductionController extends Controller
                 $stock->user_id = Auth::id();
                 $stock->save();
             }
-        }
-
-        $finishedStock = Stock::where('product_id', $production->product_id)->first();
-
-        if ($finishedStock) {
-            $finishedStock->quantity -= $production->quantity;
-            $finishedStock->user_id = Auth::id();
-            $finishedStock->save();
         }
 
         $production->delete();
